@@ -28,6 +28,54 @@
     });
   }
 
+  // Active section highlight in nav (desktop + mobile)
+  if (nav && 'IntersectionObserver' in window) {
+    const sectionIds = ['ukazky', 'produkty', 'jaktofunguje', 'onas', 'kontakt'];
+    const links = new Map(
+      sectionIds
+        .map((id) => [id, nav.querySelector(`a[href="#${id}"]`)] )
+        .filter(([, a]) => !!a)
+    );
+
+    const ratios = new Map();
+
+    const setActive = (id) => {
+      links.forEach((a) => a.classList.remove('active'));
+      const a = links.get(id);
+      if (a) a.classList.add('active');
+    };
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.target?.id) return;
+          ratios.set(e.target.id, e.isIntersecting ? e.intersectionRatio : 0);
+        });
+
+        let bestId = null;
+        let bestRatio = 0;
+        for (const [id, r] of ratios.entries()) {
+          if (r > bestRatio) {
+            bestRatio = r;
+            bestId = id;
+          }
+        }
+
+        if (bestId) setActive(bestId);
+      },
+      {
+        // “active” when the section is roughly around the center of the viewport
+        rootMargin: '-35% 0px -55% 0px',
+        threshold: [0, 0.15, 0.35, 0.55, 0.75, 1],
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  }
+
   // Lightbox (gallery modal)
   const dlg = document.querySelector('[data-lightbox]');
   const gallery = document.querySelector('[data-gallery]');
