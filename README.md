@@ -1,4 +1,4 @@
-# KouzlaStehu.cz – statický web (Cloudflare Pages + GitHub)
+# kouzlastehu.cz – statický web (Cloudflare Pages + GitHub)
 
 Tahle verze webu je **čistý statický HTML/CSS/JS** (rychlá, levná, jednoduchá).
 - ✅ Super výkon (žádné frameworkové břicho)
@@ -13,7 +13,7 @@ Tahle verze webu je **čistý statický HTML/CSS/JS** (rychlá, levná, jednoduc
 
 ### Varianta A – GitHub Desktop (nejvíc „klikací“, skoro bez nervů)
 1. Nainstaluj **GitHub Desktop**.
-2. Otevři svůj repozitář: `IAmBajza/Web-KouzlaStehu.cz` (Clone).
+2. Otevři svůj repozitář: `IAmBajza/Web-kouzlastehu.cz` (Clone).
 3. Do složky repozitáře **zkopíruj obsah tohoto ZIPu** (přepiš staré soubory).
 4. V GitHub Desktop uvidíš změny → napiš krátký popis (např. „Úprava homepage + galerie“).
 5. Klikni **Commit to main**.
@@ -23,8 +23,8 @@ Hotovo. Cloudflare Pages si to stáhne a nasadí samo (pokud je propojené s rep
 
 ### Varianta B – přes příkazovou řádku (pro odvážné)
 ```bash
-git clone https://github.com/IAmBajza/Web-KouzlaStehu.cz
-cd Web-KouzlaStehu.cz
+git clone https://github.com/IAmBajza/Web-kouzlastehu.cz
+cd Web-kouzlastehu.cz
 
 # zkopíruj sem nové soubory (přepsat)
 git add .
