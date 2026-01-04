@@ -63,7 +63,7 @@ small,.small{font-size:.92rem}
   padding: 10px 0;
   gap: 12px;
 }
-.brand img{border-radius:12px; height:64px; width:auto}
+.brand img{border-radius:0; height:56px; width:auto; display:block}
 
 .nav{
   display:flex; align-items:center; gap: 14px;
