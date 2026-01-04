@@ -457,6 +457,34 @@ section[id]{scroll-margin-top: calc(var(--header-offset) + 12px)}
 .gallery-item:hover img{transform: scale(1.05)}
 .gallery-item:focus-visible{outline: 3px solid rgba(31,107,87,.55); outline-offset: 3px}
 
+
+/* Gallery CTA (Instagram) – span full width, avoid the ‘green bubble’ on mobile */
+.gallery-cta{
+  grid-column: 1 / -1;
+  display:flex;
+  justify-content:center;
+}
+.insta-cta{
+  width: min(520px, 100%);
+  border-radius: 16px; /* less ‘pill’, more premium */
+  padding: 14px 18px;
+}
+.insta-cta .btn-label{
+  white-space: nowrap;
+}
+
+@media (max-width: 420px){
+  .insta-cta{
+    width: 100%;
+  }
+  .insta-cta .btn-label{
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+  }
+}
+
+
 .lightbox{
   width: min(1000px, 94vw);
   max-height: 92vh;
