@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" role="img" aria-label="Kouzla Stehů">
+  <defs>
+    <style>
+      .title{font-family: Georgia, "Times New Roman", serif; font-weight: 700; letter-spacing: 2px; fill:#2a1f18;}
+      .tag{font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 700; letter-spacing: 3px; fill:#2a1f18; opacity:.85;}
+      .line{stroke:#2a1f18; stroke-width:6; stroke-linecap:round; opacity:.35;}
+    </style>
+  </defs>
+
+  <!-- subtle stitch line -->
+  <path class="line" d="M20 28 C80 10, 130 46, 190 28 S300 10, 360 28 S450 46, 500 28" fill="none"/>
+
+  <text class="title" x="20" y="78" font-size="56">KOUZLA STEHŮ</text>
+  <text class="tag" x="22" y="116" font-size="18">ŠITÍ S LÁSKOU</text>
+</svg>
