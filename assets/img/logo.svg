@@ -1,15 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" role="img" aria-label="Kouzla Stehů">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 240" role="img" aria-label="Kouzla Stehů logo">
   <defs>
     <style>
-      .title{font-family: Georgia, "Times New Roman", serif; font-weight: 700; letter-spacing: 2px; fill:#2a1f18;}
-      .tag{font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 700; letter-spacing: 3px; fill:#2a1f18; opacity:.85;}
-      .line{stroke:#2a1f18; stroke-width:6; stroke-linecap:round; opacity:.35;}
+      .word{font-family:"Georgia","Times New Roman",serif;font-weight:700;letter-spacing:2px;}
+      .tag{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-weight:600;letter-spacing:3px;}
     </style>
   </defs>
-
-  <!-- subtle stitch line -->
-  <path class="line" d="M20 28 C80 10, 130 46, 190 28 S300 10, 360 28 S450 46, 500 28" fill="none"/>
-
-  <text class="title" x="20" y="78" font-size="56">KOUZLA STEHŮ</text>
-  <text class="tag" x="22" y="116" font-size="18">ŠITÍ S LÁSKOU</text>
+  <g transform="translate(20,25)" fill="none" stroke="#2a1f18" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 10 L175 70"/>
+    <path d="M105 25 L160 85" opacity="0.35"/>
+    <circle cx="117" cy="14" r="7" fill="#2a1f18" stroke="none"/>
+    <path d="M170 70 C210 35,255 55,255 95 C255 140,200 155,170 185 C140 155,85 140,85 95 C85 55,130 35,170 70"/>
+    <path d="M170 185 C150 205,130 215,95 215"/>
+    <path d="M95 215 C70 215,55 205,45 195"/>
+  </g>
+  <g transform="translate(300,78)" fill="#2a1f18">
+    <text class="word" x="0" y="0" font-size="56">KOUZLA STEHŮ</text>
+    <text class="tag" x="2" y="54" font-size="18" opacity="0.85">ŠITÍ S LÁSKOU</text>
+  </g>
 </svg>
