@@ -158,6 +158,21 @@ small,.small{font-size:.95rem}
   transform: translateY(0);
 }
 
+/* Back-to-site button for legal pages (icon-only circle) */
+.fab-back{
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  justify-content: center;
+  gap: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+  color: rgba(35,26,19,.92);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.fab-back:hover{background: rgba(255,255,255,.98)}
+
 /* a bit more breathing room on very small screens */
 @media (max-width: 420px){
   .fab-top{bottom: calc(16px + env(safe-area-inset-bottom) + 104px)}
