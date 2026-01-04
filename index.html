@@ -2,505 +2,492 @@
 <html lang="cs">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Kouzla stehů – šití s láskou. Úpravy oděvů, zakázkové šití a opravy. Kontakt a ukázky práce." />
-  <title>Kouzla stehů | Šití s láskou</title>
-  <style>
-    :root {
-      --bg: #fbf7f0;
-      --panel: rgba(255,255,255,0.72);
-      --ink: #1f1a16;
-      --muted: #6c5a4a;
-      --line: rgba(108,90,74,0.18);
-      --brand: #5a3f2a;
-      --brand2: #8a6a4c;
-      --shadow: 0 20px 60px rgba(31,26,22,0.10);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1100px;
-    }
-    * { box-sizing: border-box; }
-    html,body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--ink);
-      background:
-        radial-gradient(1200px 600px at 10% 0%, rgba(138,106,76,0.15), transparent 60%),
-        radial-gradient(900px 500px at 100% 20%, rgba(90,63,42,0.14), transparent 55%),
-        linear-gradient(180deg, #fbf7f0 0%, #f7efe2 55%, #fbf7f0 100%);
-    }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-    .topbar {
-      position: sticky; top: 0; z-index: 20;
-      backdrop-filter: blur(10px);
-      background: rgba(251,247,240,0.75);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; padding: 14px 0;
-    }
-    .brand {
-      display: flex; align-items: center; gap: 12px;
-      font-weight: 800; letter-spacing: 0.2px;
-    }
-    .brand img { height: 38px; width: auto; border-radius: 10px; }
-    .navlinks {
-      display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
-      font-size: 14px; color: var(--muted);
-    }
-    .navlinks a {
-      padding: 8px 10px; border-radius: 10px;
-    }
-    .navlinks a:hover { background: rgba(90,63,42,0.06); color: var(--ink); }
-    .cta {
-      display: flex; gap: 10px; align-items: center;
-    }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.55);
-      box-shadow: 0 8px 30px rgba(31,26,22,0.06);
-      font-weight: 650;
-      font-size: 14px;
-    }
-    .btn:hover { transform: translateY(-1px); transition: 160ms ease; }
-    .btn.primary {
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      color: #fff;
-      border-color: rgba(255,255,255,0.25);
-    }
-    .btn.primary:hover { filter: brightness(1.03); }
-    .hero {
-      padding: 54px 0 22px;
-    }
-    .heroGrid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-    }
-    .heroMain {
-      padding: 26px;
-      overflow: hidden;
-      position: relative;
-    }
-    .heroMain:before {
-      content:"";
-      position:absolute; inset:-80px -120px auto auto;
-      width: 240px; height: 240px;
-      background: radial-gradient(circle at 30% 30%, rgba(138,106,76,0.28), transparent 60%);
-      transform: rotate(10deg);
-      pointer-events: none;
-    }
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(28px, 4.2vw, 44px);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-    .lead {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-      max-width: 62ch;
-    }
-    .chips {
-      display:flex; flex-wrap: wrap; gap: 10px;
-      margin: 10px 0 18px;
-    }
-    .chip {
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.55);
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 600;
-    }
-    .heroActions {
-      display:flex; flex-wrap: wrap; gap: 10px; align-items: center;
-      margin-top: 14px;
-    }
-    .heroAside {
-      padding: 20px;
-    }
-    .asideTitle {
-      font-weight: 800; margin: 2px 0 10px;
-    }
-    .contactList {
-      display: grid; gap: 10px;
-      margin-top: 12px;
-    }
-    .contactItem {
-      display:flex; align-items: center; gap: 12px;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.55);
-    }
-    .icon {
-      width: 34px; height: 34px; border-radius: 12px;
-      display:grid; place-items:center;
-      background: rgba(90,63,42,0.10);
-      color: var(--brand);
-      flex: 0 0 auto;
-    }
-    .contactItem b { display:block; font-size: 13px; color: var(--muted); font-weight: 700; }
-    .contactItem span { display:block; font-size: 15px; font-weight: 700; }
-    .section {
-      padding: 26px 0;
-    }
-    .sectionHeader {
-      display:flex; align-items: end; justify-content: space-between;
-      gap: 18px; margin-bottom: 14px;
-    }
-    h2 {
-      margin: 0;
-      font-size: clamp(20px, 2.6vw, 28px);
-      letter-spacing: -0.01em;
-    }
-    .sub {
-      margin: 0; color: var(--muted); line-height: 1.6;
-      max-width: 70ch;
-      font-size: 15px;
-    }
-    .grid3 {
-      display:grid; grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .service {
-      padding: 18px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.55);
-    }
-    .service h3 { margin: 8px 0 6px; font-size: 16px; }
-    .service p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14px; }
-    .gallery {
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .shot {
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.55);
-      box-shadow: 0 10px 30px rgba(31,26,22,0.06);
-    }
-    .shot img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display:block;
-    }
-    .shot .cap {
-      padding: 10px 12px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 650;
-    }
-    .steps {
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-    .step {
-      padding: 16px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.55);
-    }
-    .step .n {
-      width: 34px; height: 34px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      background: rgba(90,63,42,0.10);
-      color: var(--brand);
-      font-weight: 900;
-      margin-bottom: 10px;
-    }
-    .step b { display:block; margin-bottom: 6px; }
-    .step p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14px; }
-    .footer {
-      padding: 30px 0 40px;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      margin-top: 10px;
-      font-size: 13px;
-    }
-    .footerRow {
-      display:flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-      align-items: center;
-    }
-    .tinyLinks a { color: var(--muted); padding: 6px 8px; border-radius: 10px; }
-    .tinyLinks a:hover { background: rgba(90,63,42,0.06); color: var(--ink); }
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kouzla Stehů — šité výrobky na míru</title>
+  <meta name="description" content="Ručně šité kabelky, batohy a bytový textil. Kvalitní materiály, pečlivé zpracování a možnost úprav na míru. Napište mi a společně vymyslíme váš kousek." />
+  <meta name="theme-color" content="#f5e9d5" />
+  <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" />
+  <link rel="icon" href="assets/img/favicon-48.png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="assets/img/favicon-192.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
 
-    /* Responsive */
-    @media (max-width: 940px) {
-      .heroGrid { grid-template-columns: 1fr; }
-      .grid3 { grid-template-columns: 1fr; }
-      .gallery { grid-template-columns: 1fr 1fr; }
-      .steps { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 520px) {
-      .navlinks { display:none; }
-      .gallery { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr; }
-      .shot img { height: 210px; }
-    }
-  </style>
+  <meta property="og:title" content="Kouzla Stehů — šité výrobky na míru" />
+  <meta property="og:description" content="Ručně šité kabelky, batohy a bytový textil. Kvalitní materiály, pečlivé zpracování a možnost úprav na míru. Napište mi a společně vymyslíme váš kousek." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/portfolio-5-960.jpg" />
+
+  <link rel="preload" href="assets/css/styles.css" as="style" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
+
 <body>
+  <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
 
-  <header class="topbar">
-    <div class="container">
-      <div class="nav">
-        <div class="brand">
-          <img src="assets/kouzlastehu-logo.png" alt="Kouzla stehů – logo">
-          <div>
-            Kouzla stehů
-            <div style="font-size:12px;color:var(--muted);font-weight:700;">Šití s láskou</div>
-          </div>
-        </div>
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Kouzla Stehů – domů">
+        <img
+          src="assets/img/logo-300.png"
+          srcset="assets/img/logo-300.png 300w, assets/img/logo-600.png 600w"
+          sizes="(max-width: 640px) 160px, 220px"
+          width="220" height="126"
+          alt="Kouzla Stehů – logo"
+          loading="eager"
+        />
+      </a>
 
-        <nav class="navlinks" aria-label="Hlavní navigace">
-          <a href="#sluzby">Služby</a>
-          <a href="#galerie">Galerie</a>
-          <a href="#postup">Postup</a>
-          <a href="#kontakt">Kontakt</a>
-        </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
+        <span class="sr-only">Menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
 
-        <div class="cta">
-          <a class="btn" href="https://instagram.com/kouzla_stehu" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn primary" href="tel:+420728533313">Zavolat</a>
-        </div>
-      </div>
+      <nav id="nav" class="nav">
+        <a href="#ukazky">Ukázky</a>
+        <a href="#produkty">Produkty</a>
+        <a href="#jaktofunguje">Jak to funguje</a>
+        <a href="#onas">O mně</a>
+        <a href="#kontakt" class="nav-cta">Kontakt</a>
+      </nav>
     </div>
   </header>
 
-  <main>
+  <main id="obsah">
     <section class="hero">
-      <div class="container">
-        <div class="heroGrid">
-          <div class="card heroMain">
-            <h1>Úpravy a šití, které sedí.</h1>
-            <p class="lead">
-              Zakázkové šití, opravy a úpravy oděvů. Precizní zpracování, domluva na rovinu a termíny bez kouře a zrcadel.
-            </p>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="pill">Ručně šité • Na míru • S láskou</p>
+          <h1>Šité výrobky, které nejsou „jen další taška“.</h1>
+          <p class="lead">
+            Kabelky, batohy a bytový textil šiju poctivě, z kvalitních materiálů a s možností úprav
+            přesně podle vás. Žádná pásová výroba – tady se šije hlavou i srdcem.
+          </p>
 
-            <div class="chips" aria-label="Hlavní výhody">
-              <span class="chip">Úpravy oděvů</span>
-              <span class="chip">Opravy a zkracování</span>
-              <span class="chip">Zakázkové šití</span>
-              <span class="chip">Drobné dekorace</span>
-            </div>
-
-            <div class="heroActions">
-              <a class="btn primary" href="#kontakt">Nezávazná poptávka</a>
-              <a class="btn" href="#galerie">Ukázky práce</a>
-            </div>
-
-            <div style="margin-top:14px;color:var(--muted);font-size:13px;line-height:1.6;">
-              <b style="color:var(--ink);">Tip:</b> Stačí poslat fotku a krátký popis – řeknu, co je reálné, kolik to bude stát a kdy to může být hotové.
-            </div>
+          <div class="cta-row">
+            <a class="btn primary" href="https://wa.me/420728533313" target="_blank" rel="noopener">
+              Napsat na WhatsApp
+            </a>
+            <a class="btn" href="#ukazky">Prohlédnout ukázky</a>
           </div>
 
-          <aside class="card heroAside" id="kontakt">
-            <div class="asideTitle">Kontakt</div>
-            <div style="color:var(--muted);font-size:14px;line-height:1.6;">
-              Rychlá domluva přes telefon nebo Instagram. E-mail je fajn pro detailní zadání (fotky, rozměry, termín).
+          <div class="trust">
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">🧵</span>
+              <div>
+                <strong>Ručně vyrobeno</strong>
+                <span>každý kus prochází kontrolou detailů</span>
+              </div>
             </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">🧷</span>
+              <div>
+                <strong>Kvalitní materiály</strong>
+                <span>odolné látky, pevné zipy a kování</span>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">📏</span>
+              <div>
+                <strong>Úpravy na míru</strong>
+                <span>barvy, rozměry, popruh, kapsy…</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <div class="contactList">
-              <a class="contactItem" href="https://instagram.com/kouzla_stehu" target="_blank" rel="noopener">
-                <div class="icon" aria-hidden="true">◎</div>
-                <div>
-                  <b>Instagram</b>
-                  <span>@Kouzla_Stehu</span>
-                </div>
-              </a>
-              <a class="contactItem" href="tel:+420728533313">
-                <div class="icon" aria-hidden="true">☎</div>
-                <div>
-                  <b>Telefon</b>
-                  <span>728 533 313</span>
-                </div>
-              </a>
-              <a class="contactItem" href="mailto:KouzlaStehu@email.cz">
-                <div class="icon" aria-hidden="true">✉</div>
-                <div>
-                  <b>E-mail</b>
-                  <span>KouzlaStehu@email.cz</span>
-                </div>
-              </a>
-              <a class="contactItem" href="https://www.kouzlastehu.cz" target="_blank" rel="noopener">
-                <div class="icon" aria-hidden="true">⦿</div>
-                <div>
-                  <b>Web</b>
-                  <span>www.KouzlaStehu.cz</span>
-                </div>
-              </a>
-            </div>
-
-            <div style="margin-top:14px;color:var(--muted);font-size:13px;line-height:1.6;">
-              <b style="color:var(--ink);">Poznámka:</b> Cenu a termín vždy potvrdím předem. Když je to nesmysl, řeknu to rovnou (šetří to čas oběma).
-            </div>
-          </aside>
+        <div class="hero-media" aria-label="Ukázka výroby">
+          <picture>
+            <source
+              type="image/webp"
+              srcset="assets/img/portfolio-5-480.webp 480w, assets/img/portfolio-5-960.webp 960w, assets/img/portfolio-5-1440.webp 1440w"
+              sizes="(max-width: 900px) 92vw, 44vw"
+            />
+            <img
+              src="assets/img/portfolio-5-960.jpg"
+              srcset="assets/img/portfolio-5-480.jpg 480w, assets/img/portfolio-5-960.jpg 960w, assets/img/portfolio-5-1440.jpg 1440w"
+              sizes="(max-width: 900px) 92vw, 44vw"
+              width="960" height="1280"
+              alt="Taška s motivem dívky a Eiffelovy věže"
+              loading="eager"
+              decoding="async"
+              class="hero-img"
+            />
+          </picture>
         </div>
       </div>
     </section>
 
-    <section class="section" id="sluzby">
+    <section class="section" id="ukazky">
       <div class="container">
-        <div class="sectionHeader">
-          <div>
-            <h2>Služby</h2>
-            <p class="sub">Nejčastější zakázky. Pokud máš něco mimo seznam, napiš – většinou se dá vymyslet řešení.</p>
-          </div>
+        <div class="section-head">
+          <h2>Ukázky práce</h2>
+          <p>
+            Několik kousků pro inspiraci. Každý lze upravit (rozměr, barvy, popruh, kapsy, zapínání).
+            A ano – leopardí vzor je povolen i v neděli.
+          </p>
         </div>
 
-        <div class="grid3">
-          <div class="service">
-            <div class="icon" aria-hidden="true">✂</div>
-            <h3>Úpravy oděvů</h3>
-            <p>Zkracování, zužování, úprava pasu, rukávů a drobné přizpůsobení střihu.</p>
-          </div>
-          <div class="service">
-            <div class="icon" aria-hidden="true">⟐</div>
-            <h3>Opravy</h3>
-            <p>Výměna zipů, zašívání, přišití knoflíků, opravy švů a běžné “zachraňování”.</p>
-          </div>
-          <div class="service">
-            <div class="icon" aria-hidden="true">✶</div>
-            <h3>Zakázkové šití</h3>
-            <p>Menší zakázky na míru, doplňky a textilní dekorace. Domluva podle materiálu a času.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="galerie">
-      <div class="container">
-        <div class="sectionHeader">
-          <div>
-            <h2>Galerie</h2>
-            <p class="sub">Ukázky práce. Fotky vyměň za svoje – tyhle jsou jen bezpečné “makety”, aby to nepůsobilo prázdně.</p>
-          </div>
-        </div>
-
-        <div class="gallery" aria-label="Galerie fotografií">
+        <div class="gallery" data-gallery>
           
-          <div class="shot">
-            <img src="assets/gallery/photo1.jpg" alt="Ukázka práce – foto 1">
-            <div class="cap">Ukázka práce #1</div>
+        
+          <button class="gallery-item" type="button" data-full="assets/img/portfolio-1-orig.jpg" data-caption="Crossbody kabelka – leopardí motiv, černé detaily">
+            <picture>
+              <source type="image/webp" srcset="assets/img/portfolio-1-480.webp 480w, assets/img/portfolio-1-960.webp 960w" sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw" />
+              <img
+                src="assets/img/portfolio-1-480.jpg"
+                srcset="assets/img/portfolio-1-480.jpg 480w, assets/img/portfolio-1-960.jpg 960w"
+                sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw"
+                width="480" height="640"
+                alt="Crossbody kabelka – leopardí motiv, černé detaily"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </button>
+
+          <button class="gallery-item" type="button" data-full="assets/img/portfolio-2-orig.jpg" data-caption="Kabelka s mandala motivem – zlaté prvky">
+            <picture>
+              <source type="image/webp" srcset="assets/img/portfolio-2-480.webp 480w, assets/img/portfolio-2-960.webp 960w" sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw" />
+              <img
+                src="assets/img/portfolio-2-480.jpg"
+                srcset="assets/img/portfolio-2-480.jpg 480w, assets/img/portfolio-2-960.jpg 960w"
+                sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw"
+                width="480" height="640"
+                alt="Kabelka s mandala motivem – zlaté prvky"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </button>
+
+          <button class="gallery-item" type="button" data-full="assets/img/portfolio-3-orig.jpg" data-caption="Batoh – vážka, moderní motiv">
+            <picture>
+              <source type="image/webp" srcset="assets/img/portfolio-3-480.webp 480w, assets/img/portfolio-3-960.webp 960w" sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw" />
+              <img
+                src="assets/img/portfolio-3-480.jpg"
+                srcset="assets/img/portfolio-3-480.jpg 480w, assets/img/portfolio-3-960.jpg 960w"
+                sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw"
+                width="480" height="640"
+                alt="Batoh – vážka, moderní motiv"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </button>
+
+          <button class="gallery-item" type="button" data-full="assets/img/portfolio-4-orig.jpg" data-caption="Taška – Eiffelova věž (černobílý motiv)">
+            <picture>
+              <source type="image/webp" srcset="assets/img/portfolio-4-480.webp 480w, assets/img/portfolio-4-960.webp 960w" sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw" />
+              <img
+                src="assets/img/portfolio-4-480.jpg"
+                srcset="assets/img/portfolio-4-480.jpg 480w, assets/img/portfolio-4-960.jpg 960w"
+                sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw"
+                width="480" height="640"
+                alt="Taška – Eiffelova věž (černobílý motiv)"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </button>
+
+          <button class="gallery-item" type="button" data-full="assets/img/portfolio-5-orig.jpg" data-caption="Batoh – černobílá mandala, zipy">
+            <picture>
+              <source type="image/webp" srcset="assets/img/portfolio-5-480.webp 480w, assets/img/portfolio-5-960.webp 960w" sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw" />
+              <img
+                src="assets/img/portfolio-5-480.jpg"
+                srcset="assets/img/portfolio-5-480.jpg 480w, assets/img/portfolio-5-960.jpg 960w"
+                sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw"
+                width="480" height="640"
+                alt="Batoh – černobílá mandala, zipy"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </button>
+
+          <button class="gallery-item" type="button" data-full="assets/img/portfolio-6-orig.jpg" data-caption="Taška – modrý deštník, městský motiv">
+            <picture>
+              <source type="image/webp" srcset="assets/img/portfolio-6-480.webp 480w, assets/img/portfolio-6-960.webp 960w" sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw" />
+              <img
+                src="assets/img/portfolio-6-480.jpg"
+                srcset="assets/img/portfolio-6-480.jpg 480w, assets/img/portfolio-6-960.jpg 960w"
+                sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw"
+                width="480" height="640"
+                alt="Taška – modrý deštník, městský motiv"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </button>
+
+          <button class="gallery-item" type="button" data-full="assets/img/portfolio-7-orig.jpg" data-caption="Polštáře – zelená/bílá, krajka">
+            <picture>
+              <source type="image/webp" srcset="assets/img/portfolio-7-480.webp 480w, assets/img/portfolio-7-960.webp 960w" sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw" />
+              <img
+                src="assets/img/portfolio-7-480.jpg"
+                srcset="assets/img/portfolio-7-480.jpg 480w, assets/img/portfolio-7-960.jpg 960w"
+                sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw"
+                width="480" height="640"
+                alt="Polštáře – zelená/bílá, krajka"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </button>
+
+          <button class="gallery-item" type="button" data-full="assets/img/portfolio-8-orig.jpg" data-caption="Stolní běhoun – zelený, krajkový lem">
+            <picture>
+              <source type="image/webp" srcset="assets/img/portfolio-8-480.webp 480w, assets/img/portfolio-8-960.webp 960w" sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw" />
+              <img
+                src="assets/img/portfolio-8-480.jpg"
+                srcset="assets/img/portfolio-8-480.jpg 480w, assets/img/portfolio-8-960.jpg 960w"
+                sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw"
+                width="480" height="640"
+                alt="Stolní běhoun – zelený, krajkový lem"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </button>
+
+          <button class="gallery-item" type="button" data-full="assets/img/portfolio-9-orig.jpg" data-caption="Detail šití – nařasený lem">
+            <picture>
+              <source type="image/webp" srcset="assets/img/portfolio-9-480.webp 480w, assets/img/portfolio-9-960.webp 960w" sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw" />
+              <img
+                src="assets/img/portfolio-9-480.jpg"
+                srcset="assets/img/portfolio-9-480.jpg 480w, assets/img/portfolio-9-960.jpg 960w"
+                sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 22vw"
+                width="480" height="640"
+                alt="Detail šití – nařasený lem"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </button>
+        
+
+        <div class="center mt-24">
+          <a class="btn primary" href="https://www.instagram.com/Kouzla_Stehu/" target="_blank" rel="noopener">
+            Více fotek na Instagramu
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="produkty">
+      <div class="container">
+        <div class="section-head">
+          <h2>Co šiju nejčastěji</h2>
+          <p>Vyberte si styl – a zbytek doladíme spolu. (Včetně „prosím, ať se mi tam vejde půl domácnosti“.)</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Kabelky & crossbody</h3>
+            <p>Elegantní i „na pohodu“. Možnost vnitřních kapes, nastavitelný popruh, různé typy zapínání.</p>
+          </article>
+          <article class="card">
+            <h3>Batohy</h3>
+            <p>Na výlet, do práce i do města. Pevné švy, pohodlné popruhy, odolné materiály.</p>
+          </article>
+          <article class="card">
+            <h3>Tašky & shopper</h3>
+            <p>Prostorné tašky na nákup i na běžné nošení. Vydrží víc než „je to jen na chvilku“.</p>
+          </article>
+          <article class="card">
+            <h3>Bytový textil</h3>
+            <p>Polštáře, běhouny, dekorace. Ladíme barvy, krajky a detaily podle vašeho domova.</p>
+          </article>
+          <article class="card">
+            <h3>Zakázková výroba</h3>
+            <p>Máte představu / fotku / náčrt na ubrousku? Sem s tím. Domluvíme proveditelnost a cenu předem.</p>
+          </article>
+          <article class="card highlight">
+            <h3>Dárky</h3>
+            <p>
+              Ruční výrobek je dárek, který má duši. Pokud potřebujete přáníčko nebo balení, řekněte si.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="jaktofunguje">
+      <div class="container">
+        <div class="section-head">
+          <h2>Jak to funguje</h2>
+          <p>Bez dramatu, bez tajností, bez „ozveme se vám do 14 pracovních století“.</p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <strong>Napíšete mi</strong>
+            <span>WhatsApp / e-mail / Instagram. Pošlete představu, případně rozměry a barvy.</span>
+          </li>
+          <li>
+            <strong>Domluvíme detaily</strong>
+            <span>Materiál, motiv, kapsy, popruh, zapínání. Řeknu rovnou, co jde a co by byla spíš magie.</span>
+          </li>
+          <li>
+            <strong>Šiju</strong>
+            <span>Po odsouhlasení začínám. Dostanete info o termínu (a někdy i fotku z procesu).</span>
+          </li>
+          <li>
+            <strong>Předání / odeslání</strong>
+            <span>Osobně nebo poštou/doručením dle domluvy.</span>
+          </li>
+        </ol>
+
+        <div class="note">
+          <strong>Cena a termín:</strong>
+          orientačně záleží na velikosti, náročnosti a materiálu. Vždy dostanete cenu i termín předem – žádná překvapení u dveří.
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="onas">
+      <div class="container about">
+        <div class="about-media">
+          <picture>
+            <source type="image/webp"
+              srcset="assets/img/portfolio-7-480.webp 480w, assets/img/portfolio-7-960.webp 960w, assets/img/portfolio-7-1440.webp 1440w"
+              sizes="(max-width: 900px) 92vw, 44vw" />
+            <img
+              src="assets/img/portfolio-7-960.jpg"
+              srcset="assets/img/portfolio-7-480.jpg 480w, assets/img/portfolio-7-960.jpg 960w, assets/img/portfolio-7-1440.jpg 1440w"
+              sizes="(max-width: 900px) 92vw, 44vw"
+              width="960" height="1280"
+              alt="Batoh s černobílým mandala motivem"
+              loading="lazy"
+              decoding="async"
+              class="about-img"
+            />
+          </picture>
+        </div>
+
+        <div class="about-copy">
+          <h2>O Kouzlech Stehů</h2>
+          <p>
+            Šiju, protože mě baví, když vzniká něco praktického a zároveň hezkého. Když se k tomu přidá dobrý materiál
+            a poctivý steh, vznikne věc, která vydrží – a neztratí kouzlo ani po několika sezónách.
+          </p>
+          <p>
+            U zakázek jsem upřímná: co nejde udělat kvalitně, radši nedělám. (Šití je radost, ne reality show.)
+          </p>
+
+          <div class="faq">
+            <details>
+              <summary>Jak dlouho trvá výroba?</summary>
+              <p>Podle vytížení a náročnosti. U běžných kusů typicky dny až jednotky týdnů. Termín vždy řeknu předem.</p>
+            </details>
+            <details>
+              <summary>Umíte úpravy na míru?</summary>
+              <p>Ano. Velikost, barvy, vnitřní kapsy, popruh, zapínání, typ uší, … Domluvíme se podle potřeby.</p>
+            </details>
+            <details>
+              <summary>Jak o výrobky pečovat?</summary>
+              <p>Každý materiál je trochu jiný. Obecně: jemné čištění, nepřepínat zipy a nenechat věci „čistě náhodou“ v louži.</p>
+            </details>
           </div>
-          <div class="shot">
-            <img src="assets/gallery/photo2.jpg" alt="Ukázka práce – foto 2">
-            <div class="cap">Ukázka práce #2</div>
-          </div>
-          <div class="shot">
-            <img src="assets/gallery/photo3.jpg" alt="Ukázka práce – foto 3">
-            <div class="cap">Ukázka práce #3</div>
-          </div>
-          <div class="shot">
-            <img src="assets/gallery/photo4.jpg" alt="Ukázka práce – foto 4">
-            <div class="cap">Ukázka práce #4</div>
-          </div>
-          <div class="shot">
-            <img src="assets/gallery/photo5.jpg" alt="Ukázka práce – foto 5">
-            <div class="cap">Ukázka práce #5</div>
-          </div>
-          <div class="shot">
-            <img src="assets/gallery/photo6.jpg" alt="Ukázka práce – foto 6">
-            <div class="cap">Ukázka práce #6</div>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#kontakt">Chci se domluvit</a>
+            <a class="btn" href="#ukazky">Chci inspiraci</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="postup">
+    <section class="section" id="kontakt">
       <div class="container">
-        <div class="sectionHeader">
-          <div>
-            <h2>Jak to probíhá</h2>
-            <p class="sub">Jednoduše a bez zbytečných koleček. Čím přesnější zadání, tím rychlejší domluva.</p>
-          </div>
+        <div class="section-head">
+          <h2>Kontakt</h2>
+          <p>Nejrychlejší je WhatsApp. Instagram je fajn na inspiraci. E-mail je pro ty, co mají rádi pořádek v životě.</p>
         </div>
 
-        <div class="steps">
-          <div class="step">
-            <div class="n">1</div>
-            <b>Napiš / zavolej</b>
-            <p>Popiš zakázku a pošli fotky. U úprav přidej orientační rozměry nebo co přesně nesedí.</p>
-          </div>
-          <div class="step">
-            <div class="n">2</div>
-            <b>Potvrdíme cenu a termín</b>
-            <p>Řeknu, co je reálné, kolik to bude stát a kdy to může být hotové.</p>
-          </div>
-          <div class="step">
-            <div class="n">3</div>
-            <b>Realizace</b>
-            <p>Všechno šiju s důrazem na čisté švy a funkčnost. Žádné “na oko”.</p>
-          </div>
-          <div class="step">
-            <div class="n">4</div>
-            <b>Předání</b>
-            <p>Hotovo. Když je potřeba drobná korekce, domluvíme se férově.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="card" style="padding:20px;">
-          <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; justify-content:space-between;">
+        <div class="contact-grid">
+          <a class="contact-card" href="https://wa.me/420728533313" target="_blank" rel="noopener">
+            <span class="contact-icon" aria-hidden="true">💬</span>
             <div>
-              <h2 style="margin-bottom:6px;">Chceš rychlou odpověď?</h2>
-              <p class="sub" style="margin:0;">Nejrychlejší je Instagram nebo telefon. E-mail je ideální pro fotky a detailní zadání.</p>
+              <strong>WhatsApp / telefon</strong>
+              <span>728 533 313</span>
             </div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <a class="btn primary" href="tel:+420728533313">Zavolat</a>
-              <a class="btn" href="mailto:KouzlaStehu@email.cz">Napsat e-mail</a>
-              <a class="btn" href="https://instagram.com/kouzla_stehu" target="_blank" rel="noopener">Instagram</a>
+          </a>
+
+          <a class="contact-card" href="https://www.instagram.com/Kouzla_Stehu/" target="_blank" rel="noopener">
+            <span class="contact-icon" aria-hidden="true">📷</span>
+            <div>
+              <strong>Instagram</strong>
+              <span>@Kouzla_Stehu</span>
             </div>
-          </div>
+          </a>
+
+          <a class="contact-card" href="mailto:KouzlaStehu@email.cz">
+            <span class="contact-icon" aria-hidden="true">✉️</span>
+            <div>
+              <strong>E-mail</strong>
+              <span>KouzlaStehu@email.cz</span>
+            </div>
+          </a>
+
+          <a class="contact-card" href="https://www.KouzlaStehu.cz/">
+            <span class="contact-icon" aria-hidden="true">🌐</span>
+            <div>
+              <strong>Web</strong>
+              <span>www.KouzlaStehu.cz</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="center mt-24">
+          <p class="small">
+            Odesláním zprávy souhlasíte se zpracováním údajů pro účely vyřízení poptávky.
+            Více v <a href="privacy.html">ochraně osobních údajů</a>.
+          </p>
         </div>
       </div>
     </section>
-
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footerRow">
-        <div>© <span id="y"></span> Kouzla stehů</div>
-        <div class="tinyLinks">
-          <a href="#sluzby">Služby</a>
-          <a href="#galerie">Galerie</a>
-          <a href="#kontakt">Kontakt</a>
-        </div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Kouzla Stehů</strong>
+        <p class="small">Šití s láskou. Ručně vyráběné kousky na míru.</p>
+      </div>
+      <div class="footer-links">
+        <a href="terms.html">Obchodní podmínky</a>
+        <a href="privacy.html">Ochrana osobních údajů</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+      <div class="small">
+        <div>© 2026 Kouzla Stehů</div>
+        <div class="muted">Vytvořeno jako statický web pro rychlost a jednoduchou správu.</div>
       </div>
     </div>
   </footer>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+  <dialog class="lightbox" data-lightbox>
+    <button class="lightbox-close" type="button" data-close aria-label="Zavřít">✕</button>
+    <figure>
+      <img alt="" src="" width="1200" height="1200" loading="eager" />
+      <figcaption class="small muted"></figcaption>
+    </figure>
+  </dialog>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Kouzla Stehů",
+    "description": "Ručně šité kabelky, batohy a bytový textil. Kvalitní materiály, pečlivé zpracování a možnost úprav na míru. Napište mi a společně vymyslíme váš kousek.",
+    "url": "https://www.KouzlaStehu.cz/",
+    "telephone": "+420728533313",
+    "email": "KouzlaStehu@email.cz",
+    "sameAs": ["https://www.instagram.com/Kouzla_Stehu/"],
+    "image": ["https://www.KouzlaStehu.cz/assets/img/portfolio-5-960.jpg"]
+  }
   </script>
+
+  <script defer src="assets/js/main.js"></script>
 </body>
 </html>
