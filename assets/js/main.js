@@ -1,5 +1,4 @@
 (() => {
-  const header = document.querySelector('[data-header]');
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.getElementById('nav');
 
@@ -29,18 +28,61 @@
     });
   }
 
-  // Lightbox
+  // Lightbox (gallery modal)
   const dlg = document.querySelector('[data-lightbox]');
   const gallery = document.querySelector('[data-gallery]');
   const closeBtn = dlg?.querySelector('[data-close]');
+  const prevBtn = dlg?.querySelector('[data-prev]');
+  const nextBtn = dlg?.querySelector('[data-next]');
   const img = dlg?.querySelector('img');
   const caption = dlg?.querySelector('figcaption');
 
-  function openLightbox(src, text) {
+  const items = gallery ? Array.from(gallery.querySelectorAll('[data-full]')) : [];
+  let currentIndex = -1;
+
+  function dialogIsOpen() {
+    // <dialog> has `.open` when shown via showModal(), and the "open" attribute in general
+    return !!dlg && (dlg.open || dlg.hasAttribute('open'));
+  }
+
+  function normIndex(i) {
+    if (!items.length) return -1;
+    return ((i % items.length) + items.length) % items.length;
+  }
+
+  function renderIndex(index) {
     if (!dlg || !img || !caption) return;
+    if (!items.length) return;
+
+    const safeIndex = normIndex(index);
+    currentIndex = safeIndex;
+
+    const el = items[safeIndex];
+    const src = el.getAttribute('data-full') || '';
+    const text = el.getAttribute('data-caption') || 'Fotka výrobku';
+
     img.src = src;
-    img.alt = text || 'Fotka výrobku';
-    caption.textContent = text || '';
+    img.alt = text;
+    caption.textContent = text;
+
+    // Small UX win: pre-load neighbors
+    const preload = (i) => {
+      const idx = normIndex(i);
+      const s = items[idx]?.getAttribute('data-full');
+      if (!s) return;
+      const pre = new Image();
+      pre.src = s;
+    };
+    preload(safeIndex + 1);
+    preload(safeIndex - 1);
+
+    dlg.setAttribute('aria-label', `${text} (${safeIndex + 1} / ${items.length})`);
+  }
+
+  function openAt(index) {
+    if (!dlg) return;
+    renderIndex(index);
+
     if (typeof dlg.showModal === 'function') dlg.showModal();
     else dlg.setAttribute('open', 'true');
   }
@@ -51,24 +93,67 @@
     else dlg.removeAttribute('open');
   }
 
+  function next() {
+    if (!items.length) return;
+    renderIndex(currentIndex + 1);
+  }
+
+  function prev() {
+    if (!items.length) return;
+    renderIndex(currentIndex - 1);
+  }
+
   if (gallery) {
     gallery.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-full]');
       if (!btn) return;
-      openLightbox(btn.getAttribute('data-full'), btn.getAttribute('data-caption'));
+      const idx = items.indexOf(btn);
+      openAt(idx >= 0 ? idx : 0);
     });
   }
 
+  prevBtn?.addEventListener('click', prev);
+  nextBtn?.addEventListener('click', next);
   closeBtn?.addEventListener('click', closeLightbox);
+
+  // Close when clicking backdrop (works reliably with <dialog>)
   dlg?.addEventListener('click', (e) => {
-    // close when clicking backdrop
-    const rect = dlg.getBoundingClientRect();
-    const inDialog =
-      rect.top <= e.clientY && e.clientY <= rect.bottom &&
-      rect.left <= e.clientX && e.clientX <= rect.right;
-    if (!inDialog) closeLightbox();
+    if (!dialogIsOpen()) return;
+    if (e.target === dlg) closeLightbox();
   });
+
+  // Keyboard controls (only when modal is open)
   window.addEventListener('keydown', (e) => {
+    if (!dialogIsOpen()) return;
+
     if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // Basic swipe (mobile). Not fancy, but gets the job done.
+  let startX = null;
+
+  dlg?.addEventListener('pointerdown', (e) => {
+    if (!dialogIsOpen()) return;
+    const target = e.target;
+    // ignore pointerdown on interactive elements (buttons/links)
+    if (target && (target.closest('button') || target.closest('a'))) return;
+    startX = e.clientX;
+  });
+
+  dlg?.addEventListener('pointerup', (e) => {
+    if (!dialogIsOpen() || startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+
+    // threshold tuned to avoid accidental triggers
+    if (Math.abs(dx) < 60) return;
+    if (dx < 0) next();
+    else prev();
+  });
+
+  dlg?.addEventListener('pointercancel', () => {
+    startX = null;
   });
 })();
