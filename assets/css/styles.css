@@ -131,7 +131,17 @@ small,.small{font-size:.95rem}
 
 /* Scroll-to-top button (appears after a bit of scroll) */
 .fab-top{
-  bottom: calc(16px + env(safe-area-inset-bottom) + 64px);
+  /* icon-only circle button (doesn't fight the WhatsApp pill) */
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  justify-content: center;
+  gap: 0;
+  border-radius: 999px;
+
+  /* keep it clearly above the WhatsApp FAB */
+  bottom: calc(16px + env(safe-area-inset-bottom) + 92px);
+
   background: rgba(255,255,255,.92);
   color: rgba(35,26,19,.92);
   border: 1px solid var(--line);
@@ -146,6 +156,11 @@ small,.small{font-size:.95rem}
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+/* a bit more breathing room on very small screens */
+@media (max-width: 420px){
+  .fab-top{bottom: calc(16px + env(safe-area-inset-bottom) + 104px)}
 }
 
 
@@ -221,6 +236,14 @@ small,.small{font-size:.95rem}
   color: var(--primary-ink);
 }
 .nav .nav-cta:hover{background: #185b4a}
+
+/* When the CTA "Kontakt" is the active section, don't downgrade it to the pale active state
+   (it kills contrast and looks like a bug). */
+.nav a.nav-cta.active{
+  background: var(--primary);
+  color: var(--primary-ink);
+}
+.nav a.nav-cta.active::after{background: rgba(255,255,255,.75)}
 
 .nav-toggle{
   display:none;
