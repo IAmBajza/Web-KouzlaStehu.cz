@@ -3,4 +3,9 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  # CSP note:
+  # - allow Google Fonts (optional) for typography
+  # - allow Plausible (s.plausible.cz + plausible.cz) for privacy-friendly analytics
+  # If you decide to self-host fonts, you can remove fonts.googleapis.com/fonts.gstatic.com.
+  # JSON-LD (structured data) is an inline <script>. We allow only that exact inline script via a CSP hash.
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'sha256-x5aXSaSdfQChKJsQRzOEP+qd4tEF3l0vtw/bk/0cz/g=' https://s.plausible.cz; connect-src 'self' https://plausible.cz https://s.plausible.cz; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
