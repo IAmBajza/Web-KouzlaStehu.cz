@@ -30,7 +30,7 @@
 
   // Active section highlight in nav (desktop + mobile)
   if (nav && 'IntersectionObserver' in window) {
-    const sectionIds = ['ukazky', 'produkty', 'jaktofunguje', 'onas', 'kontakt'];
+    const sectionIds = ['uvod', 'ukazky', 'produkty', 'jaktofunguje', 'onas', 'kontakt'];
     const links = new Map(
       sectionIds
         .map((id) => [id, nav.querySelector(`a[href="#${id}"]`)] )
@@ -204,4 +204,20 @@
   dlg?.addEventListener('pointercancel', () => {
     startX = null;
   });
+
+  // Scroll-to-top button
+  const topBtn = document.querySelector('[data-to-top]');
+  if (topBtn) {
+    const onScroll = () => {
+      const show = window.scrollY > 600;
+      topBtn.classList.toggle('is-visible', show);
+      topBtn.setAttribute('aria-hidden', String(!show));
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 })();

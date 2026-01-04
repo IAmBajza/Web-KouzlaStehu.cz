@@ -129,6 +129,25 @@ small,.small{font-size:.95rem}
 .fab:active{transform: translateY(0)}
 .fab-label{font-weight: 700}
 
+/* Scroll-to-top button (appears after a bit of scroll) */
+.fab-top{
+  bottom: calc(16px + env(safe-area-inset-bottom) + 64px);
+  background: rgba(255,255,255,.92);
+  color: rgba(35,26,19,.92);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .2s ease, transform .2s ease, background-color .15s ease;
+}
+.fab-top:hover{background: rgba(255,255,255,.98)}
+.fab-top.is-visible{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 
 .container{
   width:min(var(--max), 100% - 2rem);
