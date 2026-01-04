@@ -24,17 +24,20 @@ body{
   background: radial-gradient(1200px 600px at 20% -10%, #fff, transparent 60%),
               radial-gradient(900px 500px at 80% -10%, #fff, transparent 65%),
               var(--bg);
-  line-height:1.5;
+  line-height:1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 img{max-width:100%; height:auto; display:block}
 a{color:inherit}
-p{margin:0 0 12px}
+p{margin:0 0 14px}
 h1,h2,h3{line-height:1.15; margin:0 0 10px; font-family: var(--font-display)}
 h1{font-size: clamp(2rem, 3vw + 1rem, 3.2rem); letter-spacing:-0.02em}
 h2{font-size: clamp(1.6rem, 1.2vw + 1.1rem, 2.3rem); letter-spacing:-0.02em}
-h3{font-size:1.15rem}
-small,.small{font-size:.92rem}
+h3{font-size:1.2rem}
+small,.small{font-size:.95rem}
 .muted{color:var(--muted)}
 .center{text-align:center}
 .mt-24{margin-top:24px}
@@ -115,7 +118,7 @@ small,.small{font-size:.92rem}
   color: rgba(35,26,19,.9);
   margin-bottom: 12px;
 }
-.lead{font-size:1.15rem; color:var(--muted); max-width: 60ch}
+.lead{font-size:1.1rem; color:var(--muted); max-width: 60ch; line-height: 1.65}
 
 .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin: 18px 0 18px}
 .btn{
