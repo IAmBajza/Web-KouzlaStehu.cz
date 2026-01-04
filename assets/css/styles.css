@@ -66,7 +66,7 @@ small,.small{font-size:.92rem}
   padding: 10px 0;
   gap: 12px;
 }
-.brand img{border-radius:0; height:68px; width:auto; display:block}
+.brand img{border-radius:0; height:92px; width:auto; display:block}
 
 .nav{
   display:flex; align-items:center; gap: 14px;
@@ -422,5 +422,5 @@ small,.small{font-size:.92rem}
 }
 
 @media (max-width: 520px){
-  .brand img{height:60px}
+  .brand img{height:80px}
 }
