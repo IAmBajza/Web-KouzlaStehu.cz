@@ -174,10 +174,17 @@ small,.small{font-size:.95rem}
 .fab-back:hover{background: rgba(255,255,255,.98)}
 
 /* a bit more breathing room on very small screens */
-@media (max-width: 420px){
-  .fab-top{bottom: calc(16px + env(safe-area-inset-bottom) + 104px)}
+@media (max-width: 768px){
+  :root{
+    /* tune these if the WhatsApp FAB changes size */
+    --wa-height: 44px;  /* approx .fab height with padding */
+    --fab-gap: 6px;     /* space between WhatsApp and the top button */
+  }
+  .fab-top{
+    /* sit just above the WhatsApp FAB */
+    bottom: calc(16px + env(safe-area-inset-bottom) + var(--wa-height) + var(--fab-gap));
+  }
 }
-
 
 .container{
   width:min(var(--max), 100% - 2rem);
